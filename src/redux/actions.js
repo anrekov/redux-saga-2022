@@ -13,34 +13,32 @@ export const createPost = (post) => ({
   payload: post,
 })
 
-export const fetchPosts = () => {
-  // ТАКЖЕ НО С REDUX SAGA
+// REDUX THUNK
 
-  return {
-    type: REQUEST_POSTS,
-  }
+// export const fetchPosts = () => async (dispatch) => {
+//   try {
+//     dispatch(showLoader())
 
-  //
-  // export const fetchPosts = () => {
+//     const response = await fetch(
+//       'https://jsonplaceholder.typicode.com/posts?_limit=5'
+//     )
+//     const json = await response.json()
 
-  // async (dispatch) => {
-  // try {
-  //   dispatch(showLoader())
+//     setTimeout(async () => {
+//       dispatch({ type: FETCH_POSTS, payload: json })
+//       dispatch(hideLoader())
+//     }, 1500)
+//   } catch (err) {
+//     dispatch(showAlert('api error' + err, 5000))
+//     dispatch(hideLoader())
+//   }
+// }
 
-  //   const response = await fetch(
-  //     'https://jsonplaceholder.typicode.com/posts?_limit=5'
-  //   )
-  //   const json = await response.json()
+// ТАКЖЕ НО С REDUX SAGA
 
-  //   setTimeout(async () => {
-  //     dispatch({ type: FETCH_POSTS, payload: json })
-  //     dispatch(hideLoader())
-  //   }, 1500)
-  // } catch (err) {
-  //   dispatch(showAlert('api error' + err, 5000))
-  //   dispatch(hideLoader())
-  // }
-}
+export const fetchPosts = () => ({
+  type: REQUEST_POSTS,
+})
 
 export const showLoader = () => ({
   type: SHOW_LOADER,
